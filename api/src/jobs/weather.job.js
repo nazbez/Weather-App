@@ -47,12 +47,12 @@ const sendWeatherEmail = async (subscription) => {
 };
 
 const scheduleWeatherUpdates = () => {
-  cron.schedule('* * * * *', async () => {
+  cron.schedule('0 * * * *', async () => {
     const subs = await Subscription.findAll({ where: { confirmed: true, frequency: 'hourly' } });
     subs.forEach(sendWeatherEmail);
   });
 
-  cron.schedule('* * * * *', async () => {
+  cron.schedule('0 8 * * *', async () => {
     const subs = await Subscription.findAll({ where: { confirmed: true, frequency: 'daily' } });
     subs.forEach(sendWeatherEmail);
   });
