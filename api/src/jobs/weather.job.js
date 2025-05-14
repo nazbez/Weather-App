@@ -26,7 +26,7 @@ const sendWeatherEmail = async (subscription) => {
     const unsubscribeUrl = `http://localhost:${process.env.PORT}/api/unsubscribe/${subscription.token}`;
 
     await transporter.sendMail({
-      from: `"Weather Bot" <${process.env.EMAIL_USER}>`,
+      from: `"Weather App" <${process.env.EMAIL_USER}>`,
       to: subscription.email,
       subject: `Weather Update for ${subscription.city}`,
       html: `
