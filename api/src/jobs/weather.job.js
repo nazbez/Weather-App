@@ -23,7 +23,8 @@ const sendWeatherEmail = async (subscription) => {
       }
     });
 
-    const unsubscribeUrl = `http://localhost:${process.env.PORT}/api/unsubscribe/${subscription.token}`;
+    const baseUrl = process.env.BASE_URL || `http://localhost:${process.env.PORT || 3000}`;
+    const unsubscribeUrl = `${baseUrl}/api/unsubscribe/${subscription.token}`;
 
     await transporter.sendMail({
       from: `"Weather App" <${process.env.EMAIL_USER}>`,

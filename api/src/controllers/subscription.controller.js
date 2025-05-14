@@ -23,14 +23,6 @@ exports.subscribe = async (req, res) => {
 
     const token = uuidv4();
 
-    await Subscription.create({
-      email,
-      city,
-      frequency,
-      token,
-      confirmed: false
-    });
-
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -39,13 +31,22 @@ exports.subscribe = async (req, res) => {
       }
     });
 
-    const confirmUrl = `http://localhost:${process.env.PORT || 3000}/api/confirm/${token}`;
+    const baseUrl = process.env.BASE_URL || `http://localhost:${process.env.PORT || 3000}`;
+    const confirmUrl = `${baseUrl}/api/confirm/${token}`;
 
     await transporter.sendMail({
       from: `"Weather API" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: 'Confirm your weather subscription',
       html: `<p>Click to confirm: <a href="${confirmUrl}">${confirmUrl}</a></p>`
+    });
+
+    await Subscription.create({
+      email,
+      city,
+      frequency,
+      token,
+      confirmed: false
     });
 
     return res.status(200).json({ message: 'Subscription successful. Confirmation email sent.' });
