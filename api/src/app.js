@@ -8,11 +8,18 @@ const subscriptionRoutes = require('./routes/subscription.routes');
 const weatherRoutes = require('./routes/weather.routes');
 const swaggerDocument = YAML.load('./swagger.yaml');
 const path = require('path');
+const morgan = require('morgan');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middlewares
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(morgan('combined'));
+} else {
+  app.use(morgan('dev'));
+}
 
 app.use(cors());
 app.use(express.json());
