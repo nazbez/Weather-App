@@ -22,6 +22,11 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api', weatherRoutes);
 app.use('/api', subscriptionRoutes);
 
+app.use((err, _req, res) => {
+  console.error('❌ Internal error:', err);
+  res.status(500).json({ message: 'Internal server error' });
+});
+
 scheduleWeatherUpdates();
 
 // Start server

@@ -11,22 +11,17 @@ const db = {};
 // Initialize Sequelize using env variable
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
-  logging: false, // optional
+  logging: false // optional
 });
 
-fs
-  .readdirSync(__dirname)
-  .filter(file => (
-    file.indexOf('.') !== 0 &&
-    file !== basename &&
-    file.slice(-3) === '.js'
-  ))
-  .forEach(file => {
+fs.readdirSync(__dirname)
+  .filter((file) => file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js')
+  .forEach((file) => {
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
   });
 
-Object.keys(db).forEach(modelName => {
+Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }

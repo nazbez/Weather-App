@@ -1,13 +1,19 @@
 const { Subscription } = require('../models');
 const { v4: uuidv4 } = require('uuid');
 const nodemailer = require('nodemailer');
+const { validationResult } = require('express-validator');
 
 exports.subscribe = async (req, res) => {
-  const { email, city, frequency } = req.body;
-
-  if (!email || !city || !['hourly', 'daily'].includes(frequency)) {
-    return res.status(400).json({ message: 'Invalid input' });
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    const errorMessage = errors
+      .array()
+      .map((err) => err.msg)
+      .join(', ');
+    return res.status(400).json({ message: errorMessage });
   }
+
+  const { email, city, frequency } = req.body;
 
   try {
     const existing = await Subscription.findOne({ where: { email, city } });
@@ -25,7 +31,6 @@ exports.subscribe = async (req, res) => {
       confirmed: false
     });
 
-    // Send confirmation email
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
