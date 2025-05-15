@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: weather-api
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/weather_db
+      - EMAIL_USER=${EMAIL_USER}
+      - EMAIL_PASS=${EMAIL_PASS}
+      - WEATHER_API_KEY=${WEATHER_API_KEY}
+    volumes:
+      - .:/app
+    command: sh -c "npx sequelize-cli db:migrate && npm run dev"
+
+  db:
+    image: postgres:15
+    container_name: weather-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: weather_db
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: weather-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@weather.app
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - '5050:80'
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
