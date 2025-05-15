@@ -29,8 +29,12 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api', weatherRoutes);
 app.use('/api', subscriptionRoutes);
 
-app.use((err, _req, res) => {
-  console.error('❌ Internal error:', err);
+app.use((req, res) => {
+  res.status(404).json({ message: 'Route not found' });
+});
+
+app.use((err, req, res, next) => {
+  console.error('Unhandled error:', err);
   res.status(500).json({ message: 'Internal server error' });
 });
 
