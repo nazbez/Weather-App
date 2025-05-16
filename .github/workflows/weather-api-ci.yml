@@ -19,7 +19,7 @@ jobs:
         node-version: [20.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     env:
-      DATABASE_URL: test_url
+      DATABASE_URL: postgres://test:test@localhost:5432/testdb
 
     steps:
     - uses: actions/checkout@v4
