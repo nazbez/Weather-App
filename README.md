@@ -33,7 +33,7 @@ A full-featured Node.js + Express API that allows users to subscribe to hourly o
 ```bash
 npm install
 cp .env.example .env
-# Fill in your Gmail credentials, DB s WEATHER_API_KEY in .env
+# Fill in your Gmail credentials, DB connection string and WEATHER_API_KEY in .env
 npx sequelize-cli db:migrate
 npm run dev
 ```
@@ -77,7 +77,7 @@ This project uses GitHub Actions for CI:
 - Lints code with ESLint
 - Runs unit tests using Jest
 
-You can find the workflow file at .github/workflows/ci.yml and view the CI status badge at the top of this README.
+You can find the workflow file at .github/workflows/weather-api-ci.yml and view the CI status badge at the top of this README.
 
 ## 📜 License
 
