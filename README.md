@@ -84,7 +84,7 @@ You can find the workflow file at .github/workflows/weather-api-ci.yml and view 
 ## 💡 Possible Improvements
 While the current implementation is solid for single-instance use, the system can be enhanced in the following ways:
 
-- Email queue with transactional safety: Create a separate email_jobs table that records email dispatches for each new subscription. Both subscription and email_jobs entries should be created in a single database transaction to ensure atomicity. This prevents inconsistencies when the email service fails after the subscription is saved.
+- Email queue with transactional safety: Create a separate email_jobs table that records email dispatches for each new subscription. Both subscription and email_jobs entries should be created in a single database transaction to ensure atomicity. This prevents inconsistencies when the email service fails after the subscription is saved. And send these emails via other background job.
 - Decoupling cron job service: Move the scheduled weather-update job into a separate microservice or worker container. This allows the main API to remain stateless and scale independently.
 
 ## 📜 License
