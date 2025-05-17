@@ -3,7 +3,7 @@
 # Weather App
 
 ![Node.js](https://img.shields.io/badge/node.js-20.x-green)
-![Express](https://img.shields.io/badge/express-4.x-blue)
+![Express](https://img.shields.io/badge/express-5.x-blue)
 ![PostgreSQL](https://img.shields.io/badge/postgres-15.x-blueviolet)
 ![Dockerized](https://img.shields.io/badge/docker-ready-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-yellow)
