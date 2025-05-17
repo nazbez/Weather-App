@@ -1,4 +1,5 @@
 ![API CI](https://github.com/nazbez/Weather-App/actions/workflows/weather-api-ci.yml/badge.svg)
+![Docker build and push](https://github.com/nazbez/Weather-App/actions/workflows/docker-build-push.yml/badge.svg)
 
 # Weather App
 
