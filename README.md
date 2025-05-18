@@ -49,10 +49,10 @@ docker-compose up --build
 
 Then visit:
 
-- API: [http://localhost:3000](http://localhost:3000)
-- Subscription form: [http://localhost:3000/subsription.html](http://localhost:3000/subscribe.html)
-- Swagger UI: [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
-- PgAdmin: [http://localhost:5050](http://localhost:5050)
+- **API**: [http://localhost:3000](http://localhost:3000)
+- **Subscription form**: [http://localhost:3000/subsription.html](http://localhost:3000/subscribe.html)
+- **Swagger UI**: [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+- **PgAdmin**: [http://localhost:5050](http://localhost:5050)
 
 ## 🛠️ Tech Stack
 
@@ -81,6 +81,20 @@ This project uses GitHub Actions for CI:
 - Runs unit tests using Jest
 
 You can find the workflow file at .github/workflows/weather-api-ci.yml and view the CI status badge at the top of this README.
+
+## 🚀 Deployment
+
+This project is deployed on [Render.com](https://render.com) using Docker.
+
+- Docker image is automatically built and pushed to Docker Hub after every merge to `main` branch. You can find the workflow file at .github/workflows/docker-build-push.yml and view the status badge at the top of this README
+- Public Docker image: [nazbez/weather-api on Docker Hub](https://hub.docker.com/repository/docker/nazbez/weather-api/general)
+- Render Web Service uses this image directly.
+- Render PostgreSQL service is used for persistent storage.
+
+### 🌐 Live Links
+
+- **Swagger UI**: [https://weather-api-d1zs.onrender.com/api-docs](https://weather-api-d1zs.onrender.com/api-docs)
+- **Subscription form**: [https://weather-api-d1zs.onrender.com/subscribe.html](https://weather-api-d1zs.onrender.com/subscribe.html)
 
 ## 💡 Possible Improvements
 While the current implementation is solid for single-instance use, the system can be enhanced in the following ways:
