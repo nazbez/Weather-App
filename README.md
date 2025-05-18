@@ -13,8 +13,6 @@
 
 A production-ready Node.js + Express API that allows users to subscribe to hourly or daily weather updates via email. Users submit their email, select a city and update frequency, and then receive a confirmation link via email. Only after confirmation is the subscription activated. The system uses a cron-based scheduler to periodically fetch live weather data from the WeatherAPI and deliver updates via email.
 
-What can be improved: 
-
 ## 📘 API Overview
 
 | Method | Endpoint                 | Description                    |
