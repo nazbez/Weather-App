@@ -3,16 +3,12 @@ info:
   description: 'Weather API application that allows users to subscribe to weather updates for their city.'
   version: '1.0.0'
   title: 'Weather Forecast API'
-host: 'localhost:3000'
 basePath: '/api'
 tags:
   - name: 'weather'
     description: 'Weather forecast operations'
   - name: 'subscription'
     description: 'Subscription management operations'
-schemes:
-  - 'http'
-  - 'https'
 paths:
   /weather:
     get:
